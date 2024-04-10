@@ -1,33 +1,26 @@
-import { useSelector } from "react-redux";
-import { useState } from "react";
 
-export default function Videogames(){
-    const videogames=useSelector((state)=>state.videogames)
-    const [currentPage, setCurrentPage] = useState(1);
-    const gamesPerPage = 9;
-    const indexOfLastGame = currentPage * gamesPerPage;
-    const indexOfFirstGame = indexOfLastGame - gamesPerPage;
-    const currentgames = videogames.slice(indexOfFirstGame, indexOfLastGame)
-    const nextPage = () => {
-        setCurrentPage(prevPage => prevPage + 1);
-    };
-
-    const prevPage = () => {
-        setCurrentPage(prevPage => prevPage - 1);
-    };
+import "./Videogames.css"
+import Videogame from "../Videogame/Videogame";
+export default function Videogames({videogames}){
+  
 
     return(<>
-        {currentgames.map((game)=>{
+    <div className="games-grid">
+
+        {videogames.map((game)=>{
+            if(game.id){
+                game.genders=game.genres.map((Element)=>Element.name)
+                
+            }
+             const genders=game.genders.join(" ")
             return(
                 
-                 <h1>soy un juego {game.uuid||game.id}</h1>   
+                <Videogame image={game.image || game.background_image} genders={genders} name={game.name}/> 
                 
-            )
-        })}
-        <div>
-        <button onClick={prevPage} disabled={currentPage === 1}>Anterior</button>
-        <button onClick={nextPage} disabled={indexOfLastGame >= videogames.length}>Siguiente</button>
-        </div>
+                )
+            })}
+    </div>
+        
         </>)
     
 }

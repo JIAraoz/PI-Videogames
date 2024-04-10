@@ -19,11 +19,11 @@ export function OrderRating(typeOfOrder){
     }
 }
 
-export const loadGames = () => {
+export const loadGames = (page) => {
   return async (dispatch) => {
     try {
       
-     const {data}= await axios.get("http://localhost:3001/videogames")
+     const {data}= await axios.get(`http://localhost:3001/videogames?page=${page}`)
 
       
       dispatch({

@@ -14,7 +14,7 @@ function App() {
 
   useEffect(() => {
     
-    dispatch(loadGames());
+    dispatch(loadGames(1));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
