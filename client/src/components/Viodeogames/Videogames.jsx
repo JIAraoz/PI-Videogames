@@ -1,6 +1,7 @@
 
 import "./Videogames.css"
 import Videogame from "../Videogame/Videogame";
+
 export default function Videogames({videogames}){
   
 
@@ -8,14 +9,18 @@ export default function Videogames({videogames}){
     <div className="games-grid">
 
         {videogames.map((game)=>{
+            let genders=[]
             if(game.id){
-                game.genders=game.genres.map((Element)=>Element.name)
-                
+               
+                genders=game.genres.map((Element)=>Element.name)
             }
-             const genders=game.genders.join(" ")
+            else if( game.uuid){
+                genders=game.Genders.map((Element)=>Element.name)
+            }
+            genders=genders.join(" ") 
             return(
                 
-                <Videogame image={game.image || game.background_image} genders={genders} name={game.name}/> 
+                <Videogame image={game.imagen|| game.background_image} genders={genders} name={game.name} key={game.uuid||game.id} id={game.uuid||game.id}/> 
                 
                 )
             })}

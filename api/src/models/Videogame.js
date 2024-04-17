@@ -21,11 +21,11 @@ module.exports = (sequelize) => {
       allowNull:false
   },
   platforms:{
-      type:DataTypes.STRING
+      type:DataTypes.ARRAY(DataTypes.STRING)
       ,allowNull:false,
 
   },
-  image:{
+  imagen:{
       type:DataTypes.STRING
       ,allowNull:false,
   },

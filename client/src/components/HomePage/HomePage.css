@@ -1,10 +1,47 @@
+
 .Home{
-  
     background: rgb(0,0,0);
     background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(233,7,0,1) 50%, rgba(0,0,0,1) 100%);
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+    height: 100%; 
+   
     
-  height: 100vh;
+   
 }
 .title-home{
-    background-color: green;
+    margin-bottom: 2rem;
+    color: white;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+    
+}
+button{
+    font-family:"Bebas Neue", sans-serif;
+    cursor: pointer;
+   
+    color: black;
+    padding: 0.4rem;
+    justify-content: center;
+    border-radius: 0.3rem;
+    transition: background-color 0.7s ease;
+    transition: color 0.7s ease;
+    margin-bottom: 0.5rem;
+    
+}
+button:hover{
+    background-color:rgb(112, 0, 0);
+    color: white;
+}
+button:disabled{
+    display: none;
+}
+.page_select{
+    margin-bottom: 2rem;
+    margin-top: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

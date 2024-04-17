@@ -11,9 +11,12 @@ const getVideogamesById=async (req,res)=>{
     if(isUUID(id)){
         const game= await Videogame.findOne({where:{
             uuid:id
-        }})
+        }} )
+        const genders=await game.getGenders()
+
         if(game.length===0) res.status(404).json({message:"No se encontro ningun juego con ese uuid"})
-        res.status(200).json({game})
+        
+        res.status(200).json({game,genders})
     }
     else{
         const {data}=await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`)
@@ -24,7 +27,7 @@ const getVideogamesById=async (req,res)=>{
     } 
    } catch (error) {
     
-    res.status(500).json({message:"Hubo un error : " + error.response.status+" "+error.response.statusText})
+    res.status(500).json({message:"Hubo un error : " + error.message})
    }
 }
 module.exports=getVideogamesById

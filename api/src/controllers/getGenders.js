@@ -8,6 +8,7 @@ const getGenders=async(req,res)=>{
 
         if(genders.length < 1){
             const {data}= await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`)
+            
             const allGenders=data.results
             await Gender.bulkCreate(allGenders.map((Element)=>({name:Element.name})))
             genders= await Gender.findAll()

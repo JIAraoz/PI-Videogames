@@ -1,13 +1,15 @@
 import './Videogame.css'
-export default function Videogame({image,name,genders}){
+import { Link } from 'react-router-dom'
+export default function Videogame({image,name,genders,id}){
     
     return(
-        <>
-        <div className='card'>
-            <img src={image} alt={name} />
+        <Link to={`/detail/${id}`}className='card' >
+
+        
+            <div className='image-container'><img src={image} alt={name} /></div>
             <h3>{name}</h3>
             <span>{genders}</span>
-        </div>
-        </>
+        
+        </Link>
     )
 }

@@ -1,0 +1,32 @@
+.nav-bar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 3rem;
+    background-color: black;
+} 
+input:focus {
+    outline: none; /* Quitar el contorno predeterminado al enfocar */
+    
+  }
+  input{
+    border-color: red; /* Cambiar el color del borde cuando el input está enfocado */
+    box-shadow: 0 0 1rem rgb(255, 17, 0); /* Agregar una sombra al enfocar */
+  }
+select{
+    border-color: red; /* Cambiar el color del borde cuando el input está enfocado */
+    box-shadow: 0 0 1rem rgb(255, 17, 0); /* Agregar una sombra al enfocar */
+    border-radius: 1rem;
+}
+option{
+    border-color: red; /* Cambiar el color del borde cuando el input está enfocado */
+    box-shadow: 0 0 1rem rgb(255, 17, 0); /* Agregar una sombra al enfocar */
+    border-radius: 1rem;
+}
+.brand{
+  color: white;
+  padding-bottom: 0.8rem;
+  font-size: 2rem;
+  width: 10rem;
+  height: 2rem;
+}

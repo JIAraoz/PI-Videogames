@@ -1,8 +1,28 @@
 .card{
     width: 20rem;
+    height: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     background-color: black;
-    color:white;
+    color:whitesmoke;
+    border: solid black 0.1rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: box-shadow 0.5s;
+}
+.image-container{
+    overflow: hidden;
 }
 img{
     width: 20rem;
+    scale: 1;
+    transition: scale 1s;
+}
+.card:hover img{
+    scale: 1.2;
+}
+.card:hover{
+box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.5);
 }

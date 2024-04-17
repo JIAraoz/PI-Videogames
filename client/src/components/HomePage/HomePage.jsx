@@ -1,19 +1,37 @@
-
-import { useSelector, useDispatch} from "react-redux";
-import { useState,useEffect} from "react";
+import NavBar from "../NavBar/NavBar";
+import { useSelector} from "react-redux";
+import {  useState} from "react";
 import './HomePage.css'
 import Videogames from "../Viodeogames/Videogames"
-import { loadGames } from "../../Redux/Actions/ActionsCreators";
-export default function HomePage(){
-    
-    const dispatch=useDispatch()
-    const videogames=useSelector((state)=>state.videogames)
-    const [currentPage, setCurrentPage] = useState(1);
-    useEffect(()=>{
-        dispatch(loadGames(currentPage))
-    },[currentPage,dispatch])
-    
 
+export default function HomePage(){
+    function removeDuplicates(arr) {
+        const seen = new Set();
+        const result = [];
+      
+        for (const item of arr) {
+            const identifier = item.id || item.uuid;
+            if (!seen.has(identifier)) {
+                seen.add(identifier);
+                result.push(item);
+            }
+        }
+      
+        return result;
+      }
+   
+    const videogames_raw=useSelector((state)=>state.videogames)
+    const videogames=removeDuplicates(videogames_raw)
+    const [currentPage, setCurrentPage] = useState(1);
+   
+    
+    const gamesPerPage = 15;
+
+    const indexOfLastGame = currentPage * gamesPerPage;
+    const indexOfFirstGame = indexOfLastGame - gamesPerPage;
+    const currentGames = videogames.slice(indexOfFirstGame, indexOfLastGame);
+
+  
     
     
     const nextPage = () => {
@@ -27,14 +45,14 @@ export default function HomePage(){
 
     return (
     <div className="Home">
-    <h1 className="title-home">Bienvenido a Video games App</h1>
-    <Videogames videogames={videogames}/>
+    <NavBar></NavBar>
+   <Videogames videogames={currentGames} />
 
 
     <div className="page_select">
         <button onClick={prevPage} disabled={currentPage === 1}>Anterior</button>
         <span>{currentPage}</span>
-        <button onClick={nextPage} disabled={currentPage===7} >Siguiente</button>
+        <button onClick={nextPage} disabled={currentPage===7||currentGames.length<15 ||videogames.length<=15} >Siguiente</button>
     </div>    
 
     </div>

@@ -1,0 +1,114 @@
+
+body{
+    height: 100vh;
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(233,7,0,1) 50%, rgba(0,0,0,1) 100%);
+}
+.detail{
+    margin: 4rem;
+    background-color: black;
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: solid black 0.3rem;
+    box-shadow: -1rem 2rem 3rem  black;
+    min-height: 50rem;
+        
+}
+.right-side{
+    background-color: aliceblue;
+
+}
+.right-side img{
+    width: 100% ;
+    height: 100%;
+}
+.left_side p{
+    margin: 1rem;
+    background-color: brown;
+    padding: 0.5rem;
+    border: solid black 0.3rem;
+    border-radius: 1rem;
+
+    
+}
+.left_side span{
+    margin-left: 1rem;
+}
+.left_side h3{
+    display: flex;
+    justify-content: center;
+    font-size: 5rem;
+}
+
+.spin-star{
+ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 4rem;
+    background-color: black;
+    color: white;
+    border: solid black 0.3rem;
+    box-shadow: -1rem 2rem 3rem  black;
+    height: 50rem;
+
+}
+.spin-star img{
+    width: 5rem;
+    height: 5rem;
+    position: absolute;
+    animation: spin 3s linear infinite;
+
+}
+.rating-star{
+    height: 1rem;
+    width: 1rem;
+}
+.platforms{
+    display: flex;
+    
+    align-items: center;
+
+}
+.platform{
+    
+    background-color: brown;
+    padding: 1rem;
+
+    border: solid black 0.3rem;
+    border-radius: 1rem;
+}
+.gender{
+    background-color: brown;
+    padding: 1rem;
+
+    border: solid black 0.3rem;
+    border-radius: 1rem;
+}
+
+.genders{
+    display: flex;
+    align-items: center;
+}
+.left_side{
+    display: flex;
+    flex-direction: column;
+}
+.home-detail{
+    
+ 
+    font-size: 1.3rem;
+    margin-top: 1rem;
+    margin-left: 2rem;
+    width: 4rem;
+    height: 2.8rem;}
+@keyframes spin {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+    
+}
