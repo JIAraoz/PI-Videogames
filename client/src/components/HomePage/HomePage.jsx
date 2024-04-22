@@ -10,7 +10,7 @@ export default function HomePage(){
         const result = [];
       
         for (const item of arr) {
-            const identifier = item.id || item.uuid;
+            const identifier = item?.id || item?.uuid;
             if (!seen.has(identifier)) {
                 seen.add(identifier);
                 result.push(item);
@@ -22,6 +22,8 @@ export default function HomePage(){
    
     const videogames_raw=useSelector((state)=>state.videogames)
     const videogames=removeDuplicates(videogames_raw)
+      
+      
     const [currentPage, setCurrentPage] = useState(1);
    
     
@@ -45,7 +47,7 @@ export default function HomePage(){
 
     return (
     <div className="Home">
-    <NavBar></NavBar>
+    <NavBar setCurrentPage={setCurrentPage}></NavBar>
    <Videogames videogames={currentGames} />
 
 

@@ -116,6 +116,7 @@ background: linear-gradient(90deg, rgba(76,0,0,1) 0%, rgba(0,0,0,1) 18%, rgba(0,
 }
 .tag-container{
     margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 .main{
     display: flex;
@@ -154,7 +155,7 @@ background: linear-gradient(90deg, rgba(76,0,0,1) 0%, rgba(0,0,0,1) 18%, rgba(0,
     color: black;
 }
 .rating{
-    margin-top: 6rem;
+    margin-top: 8rem;
 }
 .tags-platforms{
     margin-top: 8rem;
@@ -174,4 +175,11 @@ background: linear-gradient(90deg, rgba(76,0,0,1) 0%, rgba(0,0,0,1) 18%, rgba(0,
 .name{
     display: flex;
     flex-direction: column;
+}
+.error{
+    background-color: brown;
+ 
+    color: black;
+    border: rgb(2, 0, 0) solid 0.2rem;
+    border-radius: 0.5rem;
 }

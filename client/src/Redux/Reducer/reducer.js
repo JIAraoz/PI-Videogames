@@ -1,4 +1,4 @@
-import { FILTER, ORDER ,LOAD_GAMES, LOAD_NAME} from "../Actions/ActionsType";
+import { FILTER, ORDER ,LOAD_GAMES, LOAD_NAME, FILTER_GENDERS} from "../Actions/ActionsType";
 
 const initialState={
     videogames:[],
@@ -24,14 +24,15 @@ function reducer(state=initialState,action){
             break 
     
         case LOAD_GAMES:
-       
-       
+            
+            
             return {
             
                 videogames: action.payload,
                 allVideogames: action.payload
               }
         case LOAD_NAME:
+           
             return{
                 ...state,videogames:action.payload
             }
@@ -89,7 +90,24 @@ function reducer(state=initialState,action){
                 }
             }
             break
-            
+        case FILTER_GENDERS:
+            if(action.payload==="All"){
+                return{
+                    ...state,
+                    videogames:state.allVideogames
+                }
+            }
+            else{const gender=action.payload
+            console.log(state.videogames);
+            console.log(gender);
+            const copy=state.videogames.filter((e)=>e.Genders.some(genero => genero.name === gender))
+            console.log(copy);
+           
+            return{
+                ...state,
+                videogames:copy
+            }}
+
         default:
             return{
                 ...state

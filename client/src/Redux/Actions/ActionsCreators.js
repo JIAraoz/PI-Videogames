@@ -1,5 +1,5 @@
 import axios from "axios"
-import {   ORDER,FILTER,LOAD_GAMES,LOAD_NAME} from "./ActionsType"
+import {   ORDER,FILTER,LOAD_GAMES,LOAD_NAME, FILTER_GENDERS} from "./ActionsType"
 
 export function Order(typeOfOrder){
     return{
@@ -12,6 +12,12 @@ return{
     type:FILTER,
     payload:typeOfFilter
 }
+}
+export function FilterGenders(typeOfFilter){
+  return{
+    type:FILTER_GENDERS,
+    payload:typeOfFilter
+  }
 }
 
 
@@ -27,7 +33,7 @@ export const loadGames = () => {
         payload: data,
       });
     } catch (error) {
-      console.log(error.message);
+      console.log(error.response.data.message);
     }
   };
 };
@@ -36,14 +42,18 @@ export const loadName = (name) => {
     try {
       
      const {data}= await axios.get(`http://localhost:3001/videogamesByName?name=${name}`)
+     
+      
+        dispatch({
+          type: LOAD_NAME,
+          payload: data,
+        });
       
       
-      dispatch({
-        type: LOAD_NAME,
-        payload: data,
-      });
+     
     } catch (error) {
-      console.log(error.message);
+
+      alert(error.response.data.message)
     }
   };
 };

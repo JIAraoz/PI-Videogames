@@ -5,8 +5,8 @@ const axios=require("axios")
 const getVideogames= async (req,res)=>{
     
     try {
-        const page=req.query.page
-        const remaingGames=100
+        
+  
         let db_videogames= await Videogame.findAll({include:{
             model: Gender, 
             as: 'Genders',
@@ -14,14 +14,26 @@ const getVideogames= async (req,res)=>{
             through: { attributes: [] }
         }})
         const response=await Promise.all([axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=1&page_size=40`),axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=2&page_size=40`),axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=3&page_size=20`)]) 
-        
+        let api_videogames=[]
         response.forEach((element) => {
-            
-            db_videogames=db_videogames.concat(element.data.results) 
+           
+            api_videogames=api_videogames.concat(element.data.results) 
         });
+        api_videogames=api_videogames.map((element)=>{return {
+            id:element.id,
+            name:element.name,
+            description:element.description,
+            Genders:element.genres.map((element)=>{return{name:element.name,id:element.id}}),
+            platforms:element.platforms.map((platforms)=>{return{id:platforms.platform.id,name:platforms.platform.name}}),
+            imagen:element.background_image,
+            rating:element.rating,
+            release_date:element.released
+
+
+        }})
         
         
-        const videogames=db_videogames
+        const videogames=db_videogames.concat(api_videogames)
          
         res.status(200).json(videogames)
     } catch (error) {

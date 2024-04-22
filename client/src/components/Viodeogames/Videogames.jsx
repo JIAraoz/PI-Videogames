@@ -9,19 +9,14 @@ export default function Videogames({videogames}){
     <div className="games-grid">
 
         {videogames.map((game)=>{
-            let genders=[]
-            if(game.id){
-               
-                genders=game.genres.map((Element)=>Element.name)
-            }
-            else if( game.uuid){
-                genders=game.Genders.map((Element)=>Element.name)
-            }
-            genders=genders.join(" ") 
+            let Genders=[]
+       
+                Genders=game.Genders.map((Element)=>Element.name)
+            
+            Genders=Genders.join(" ") 
             return(
                 
-                <Videogame image={game.imagen|| game.background_image} genders={genders} name={game.name} key={game.uuid||game.id} id={game.uuid||game.id}/> 
-                
+                <Videogame image={game?.imagen} genders={Genders} name={game?.name} key={game?.uuid||game?.id} id={game?.uuid||game?.id}/> 
                 )
             })}
     </div>

@@ -1,8 +1,9 @@
 import './Videogame.css'
 import { Link } from 'react-router-dom'
-export default function Videogame({image,name,genders,id}){
+export default function Videogame({image,name,genders,id=0}){
     
     return(
+
         <Link to={`/detail/${id}`}className='card' >
 
         

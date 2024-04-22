@@ -15,22 +15,18 @@ export default function DetailPage(){
     useEffect(()=>{
         dispatch(loadGames())
  axios.get(`http://localhost:3001/videogames/${id}`).then(({data})=>{
-      if (data.game.uuid) {
-        console.log(data.game);
-        const platforms=data.game.platforms.map((Element)=>Element)
-        const gender=data.genders.map((Element)=>Element.name)
+      
+      
+    
+        const platforms=data.platforms.map((Element)=>Element.name)
+        console.log(platforms);
+        const gender=data.Genders.map((Element)=>Element.name)
         setPlatforms(platforms)
-        setGender(gender)
-      }
-      else if(data.game.id){
-        const platforms=data.game.platforms.map((Element)=>Element.platform.name)
-        const gender=data.game.genres.map((Element)=>Element.name)
-        setPlatforms(platforms)
-        setGender(gender)
-      }
+        setGender(gender) 
+        setGame(data)
+        console.log(data);
       
    
-    setGame(data.game)
 
  }).catch((err)=>{
     console.log(err);
@@ -49,7 +45,7 @@ export default function DetailPage(){
 
                 <h3>{game.name}</h3>
                 <span>Description</span>
-                <p>{game.description_raw || game.description}</p>
+                <p>{game.description}</p>
                 <span>Gender</span>
                 <div className='genders'>
 
@@ -74,7 +70,7 @@ export default function DetailPage(){
                 <span>Rating: {game.rating} <img src={star} alt="rating" className='rating-star' /></span>
                 <Link to={"/home"}><button className='home-detail' >Home</button></Link>
             </div>
-            <div className='right-side'><img src={game.background_image||game.imagen} alt="" srcset="" /></div>
+            <div className='right-side'><img src={game.imagen} alt="" srcset="" /></div>
             </div>
         </>
 
