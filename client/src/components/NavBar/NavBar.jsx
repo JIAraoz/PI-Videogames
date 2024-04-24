@@ -23,20 +23,27 @@ export default function NavBar({setCurrentPage}){
       },[])
  
   const handleFilterGender=(e)=>{
- 
-    dispatch(FilterGenders(e.target.value))
+    if(e.target.value!==""){
+
+      dispatch(FilterGenders(e.target.value))
+      setCurrentPage(1)
+    }
 
   }
 
 
     const handleOrder=(e)=>{
         
-        dispatch(Order(e.target.value))
+        if(e.target.value!==""){
+          dispatch(Order(e.target.value))
+        }
      }
      const handleFilter=(e)=>{
+        if(e.target.value){
 
-        dispatch(Filter(e.target.value))
-        setCurrentPage(1)
+          dispatch(Filter(e.target.value))
+          setCurrentPage(1)
+        }
      }
      return(<> <nav className="nav-bar">
  <div className="brand">VIDEOGAMES</div>
@@ -62,7 +69,7 @@ export default function NavBar({setCurrentPage}){
         
         onChange={handleFilterGender}
         name='gender'>
-        <option value="s">Selecciona un género</option>
+        <option value="">Selecciona un género</option>
         <option value="All">All</option>
         {genders.genders?.map((Element)=> <option value={Element.name} key={Element.uuid}>{Element.name}</option>)}
         

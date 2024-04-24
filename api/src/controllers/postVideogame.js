@@ -10,7 +10,7 @@ const postVideogame= async(req,res)=>{
      await Promise.all(genders.map(async (genderName) => {
       const gender = await Gender.findAll({where:{name:genderName}});
       if (gender) {
-        console.log(gender);
+      
         await videogame.addGender(gender);
       }}))
      res.status(201).json({message:"videogame creado exitosamente"})

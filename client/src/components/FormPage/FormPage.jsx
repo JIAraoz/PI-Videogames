@@ -7,11 +7,13 @@ import {Link} from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import { loadGames } from '../../Redux/Actions/ActionsCreators';
 export default function FormPage(){
-  const dispatch=useDispatch()
+  
+   const dispatch=useDispatch()
+
+
+  /* ESTADOS */
   const platforms=['PC','Nintendo','PlayStation','Android','Web']
   const [errors,setErrors]=useState({})
-
-
   const [selects, setSelects] = useState({
     selectedGender:"",
     selectedPlatform:""
@@ -19,17 +21,6 @@ export default function FormPage(){
   const [genders,setGenders]=useState({
     genders:[]
   })
-  useEffect(()=>{
-    async function loadGenders(){
-      try {
-        const {data}= await axios("http://localhost:3001/genders")
-      setGenders({genders:data.genders})
-      } catch (error) {
-        console.log(error.message);
-      }
-  }
-  loadGenders()
-  },[])
   const [gameData,setGameData]=useState(
     {name:"",
     description:"",
@@ -41,8 +32,21 @@ export default function FormPage(){
     }
   ) 
 
-  
-  
+
+  useEffect(()=>{
+    async function loadGenders(){
+      try {
+        const {data}= await axios("http://localhost:3001/genders")
+      setGenders({genders:data.genders})
+      } catch (error) {
+        console.log(error.message);
+      }
+  }
+  loadGenders()
+  },[])
+
+
+    /* FUNCIÓN SUBMIT */
 
  const handleSubmit = (e) => {
   
@@ -63,18 +67,21 @@ export default function FormPage(){
     }
     
     
-    console.log(Object.keys(errors));
+ 
   };
  
 
+//FUNCIONES PARA LAS TAGS DE GENDERS Y PLATFORMS 
 
+  /* AÑADIR TAGS */
   const handleAddTag = (e) => {
    e.preventDefault()
+
    if (selects.selectedGender) { 
      setGameData((prevGameData) => {
        if (!prevGameData.genders.includes(selects.selectedGender)) {
-         
-         return { ...prevGameData, genders: [...prevGameData.genders, selects.selectedGender] };
+         const result={ ...prevGameData, genders:[...prevGameData.genders,selects.selectedGender] }
+         return result
         }
         return prevGameData;
       })
@@ -84,7 +91,7 @@ export default function FormPage(){
     
       if (selects.selectedPlatform) { 
         if (!gameData.platforms.includes(selects.selectedPlatform)) {
-          
+           
           setGameData({...gameData,platforms:[...gameData.platforms,selects.selectedPlatform]});
           setSelects({...selects,selectedPlatform:""});
           
@@ -97,23 +104,28 @@ export default function FormPage(){
   }  
   
   
-  
+    /* REMOVER TAGS */
   
   const handleRemoveTag = (e,indexToRemove) => {
    
     if(e.target.attributes.name.nodeValue==='tag-platform'){
       setGameData({...gameData,platforms:gameData.platforms.filter((_, index) => index !== indexToRemove)})
-      
+    
     
     }
     else if(e.target.attributes.name.nodeValue==='tag-gender'){
       setGameData({...gameData,genders:gameData.genders.filter((_,index)=>index!==indexToRemove)})
-      
+     
+    
     }
    
   };
+
+  const handleOnCLick=(e)=>{
+    setErrors(validation(gameData))
+  }
    
-  
+  //RENDER
   return (<div className='form-page'>
 
     <form >
@@ -164,20 +176,25 @@ export default function FormPage(){
         
         
       </select>
+      
+
       <button onClick={handleAddTag} className='add'>Agregar</button>
-      <div className="tag-container">
-        {gameData.genders.map((tag, index) => (
-          <div key={index} className="tag">
-            {tag}
-            <span
-              name='tag-gender'
-              className="tag-remove"
-              onClick={(e) => handleRemoveTag(e,index)}
-              >
-              &times;
-            </span>
-          </div>
-        ))}
+      
+      <div className="tag-container" >
+        {
+           gameData.genders.map((tag, index) =>(
+            <div key={index} className="tag">
+              {tag}
+              <span
+                name='tag-gender'
+                className="tag-remove"
+                onClick={(e) => handleRemoveTag(e,index)}
+                >
+                &times;
+              </span>
+            </div>
+          ))
+       }
       </div>
         <span className='error'>{errors.genders}</span>
     </div>

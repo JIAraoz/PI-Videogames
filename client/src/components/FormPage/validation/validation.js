@@ -1,8 +1,8 @@
 const regexUrl = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/
-export default function validation(data){
-    let errors={}
-    console.log(data.name.length);
-      
+export default  function validation(data){
+ 
+        let errors={}
+   
         if(!regexUrl.test(data.imagen)){
             errors.imagen="La url no es valida"
         }
@@ -37,4 +37,6 @@ export default function validation(data){
         }
         console.log(Object.keys(errors));
     return errors
+  
+    
 }

@@ -37,7 +37,7 @@ const getVideogames= async (req,res)=>{
          
         res.status(200).json(videogames)
     } catch (error) {
-        res.status(500).json({message:"Hubo un error : " + error})
+        res.status(500).json({message:"Hubo un error : " + error.message})
     }
 
     }

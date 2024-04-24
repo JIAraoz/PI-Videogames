@@ -38,7 +38,7 @@ function reducer(state=initialState,action){
             }
         case ORDER:
             if(action.payload==="Rating +"){
-                let copy=state.allVideogames.slice()
+                let copy=state.videogames.slice()
                
                 copy.sort((a, b) => b.rating - a.rating)
                 return{
@@ -47,7 +47,7 @@ function reducer(state=initialState,action){
                 }
             }
             else if(action.payload==="Rating -"){
-                let copy=state.allVideogames.slice()
+                let copy=state.videogames.slice()
                
                 copy.sort((a, b) => a.rating - b.rating)
                 return{
@@ -56,12 +56,12 @@ function reducer(state=initialState,action){
                 }
             }
             else if(action.payload==="A-Z"){
-                let copy=state.allVideogames.slice()
+                let copy=state.videogames.slice()
                 copy.sort((a, b) => {
                     
                     return a.name.localeCompare(b.name);
                   })
-                  console.log(copy);
+                
 
                   
                 return{
@@ -70,12 +70,12 @@ function reducer(state=initialState,action){
                 } 
             }
             else if(action.payload==="Z-A"){
-                let copy=state.allVideogames.slice()
+                let copy=state.videogames.slice()
                 copy.sort((a, b) => {
                     
                     return b.name.localeCompare(a.name);
                   })
-                  console.log(copy);
+                
 
                   
                 return{
@@ -98,10 +98,10 @@ function reducer(state=initialState,action){
                 }
             }
             else{const gender=action.payload
-            console.log(state.videogames);
-            console.log(gender);
+            
+            
             const copy=state.videogames.filter((e)=>e.Genders.some(genero => genero.name === gender))
-            console.log(copy);
+            
            
             return{
                 ...state,
